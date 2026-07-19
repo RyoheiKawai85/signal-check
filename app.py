@@ -60,3 +60,35 @@ information_sources = st.multiselect(
 if information_sources:
     st.write("参考にした情報源:")
     st.write(information_sources)
+
+#簡単な 情報源の偏りチェック
+'''casual_sources
+手軽に得られるが、偏りやすい可能性がある情報源
+formal_sources
+企業や専門家が出していて、根拠を確認しやすい情報源'''
+casual_sources = ["SNS", "YouTube", "友人・知人"]
+formal_sources = ["企業IR", "決算資料", "アナリストレポート"]
+
+selected_casual_sources = [
+    source for source in information_sources if source in casual_sources
+]
+
+selected_formal_sources = [
+    source for source in information_sources if source in formal_sources
+]
+
+if information_sources:
+    st.subheader("情報源の偏りチェック")
+
+    if selected_casual_sources and not selected_formal_sources:
+        st.warning(
+            "SNS、YouTube、友人・知人など、手軽に得られる情報に偏っている可能性があります。企業IRや決算資料なども確認してみてください。"
+        )
+    elif selected_formal_sources:
+        st.success(
+            "企業IR、決算資料、アナリストレポートなど、比較的根拠を確認しやすい情報源も含まれています。"
+        )
+    else:
+        st.info(
+            "選択した情報源をもとに、追加で確認すべき情報がないか考えてみましょう。"
+        )
