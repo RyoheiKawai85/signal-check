@@ -39,3 +39,24 @@ reason = st.text_area("投資を考えた理由を書いてください")
 if reason:
     st.write("投資を考えた理由:")
     st.write(reason)
+
+
+information_sources = st.multiselect(
+    "参考にした情報源を選んでください",
+    [
+        "SNS",
+        "YouTube",
+        "ニュース記事",
+        "友人・知人",
+        "企業IR",
+        "決算資料",
+        "株価チャート",
+        "配当利回り",
+        "アナリストレポート",
+        "その他",
+    ],
+)
+
+if information_sources:
+    st.write("参考にした情報源:")
+    st.write(information_sources)
