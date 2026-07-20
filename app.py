@@ -140,3 +140,17 @@ for check in check_results:
 total_checks = len(check_results)  #len() は、Pythonで 中身の数を数える関数
 
 st.write(f"{total_checks}項目中{checked_count}項目を確認済みです。")
+
+
+if checked_count <= 1:
+    st.warning(
+        "確認できている項目が少ないため、投資判断の前に基本情報をもう少し確認する必要があります。"
+    )
+elif checked_count < total_checks:
+    st.info(
+        "いくつかの基本項目は確認できていますが、未確認の項目も残っています。追加確認項目を見直してみてください。"
+    )
+else:
+    st.success(
+        "基本的な確認項目は一通り確認できています。情報源の偏りもあわせて確認しましょう。"
+    )
