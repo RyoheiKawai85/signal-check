@@ -92,3 +92,51 @@ if information_sources:
         st.info(
             "選択した情報源をもとに、追加で確認すべき情報がないか考えてみましょう。"
         )
+    
+#投資前に見るべき観点を確認させるチェック項目
+st.subheader("確認した項目")
+
+understands_business = st.checkbox("企業の主な事業内容を理解している")
+checked_financials = st.checkbox("直近の業績や決算を確認した")
+checked_risks = st.checkbox("リスク要因を確認した")
+compared_competitors = st.checkbox("競合企業と比較した")
+
+missing_checks = []
+
+if not understands_business:
+    missing_checks.append("企業の主な事業内容")
+
+if not checked_financials:
+    missing_checks.append("直近の業績や決算")
+
+if not checked_risks:
+    missing_checks.append("リスク要因")
+
+if not compared_competitors:
+    missing_checks.append("競合企業との違い")
+
+if missing_checks:
+    st.subheader("追加で確認すべきこと")
+
+    for item in missing_checks:
+        st.write(f"- {item}")
+else:
+    st.success("基本的な確認項目は一通り確認できています。")
+
+#確認済みの数を表示
+check_results = [
+    understands_business,
+    checked_financials,
+    checked_risks,
+    compared_competitors,
+]
+
+checked_count = 0
+
+for check in check_results:
+    if check:
+        checked_count = checked_count + 1
+
+total_checks = len(check_results)  #len() は、Pythonで 中身の数を数える関数
+
+st.write(f"{total_checks}項目中{checked_count}項目を確認済みです。")
