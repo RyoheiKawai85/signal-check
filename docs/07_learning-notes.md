@@ -29,3 +29,19 @@ import streamlit as st
 st.title("タイトル")
 st.write("説明文")
 st.button("診断する")
+
+## git add
+
+`git add` は、変更したファイルを次のcommitに含める準備をするコマンドです。
+
+Gitには、作業フォルダ、ステージ、commit履歴という考え方があります。
+
+```text
+作業フォルダ
+VSCodeで実際に編集している場所
+
+ステージ
+次のcommitに入れる変更を一時的に置く場所
+
+commit履歴
+正式に記録された変更
