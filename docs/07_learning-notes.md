@@ -45,3 +45,16 @@ VSCodeで実際に編集している場所
 
 commit履歴
 正式に記録された変更
+
+## Streamlitの画面構造整理
+
+SignalCheckでは、入力フォームと診断結果を分けて表示するために、`st.divider()`、`st.header()`、`st.container()`、`st.caption()` を使いました。
+
+目的は、単に見た目を変えることではなく、画面上でもコード上でも「入力する場所」と「結果を見る場所」を分けることです。
+
+## st.divider()
+
+`st.divider()` は、画面に区切り線を表示する命令です。
+
+```python
+st.divider()
