@@ -101,56 +101,66 @@ checked_financials = st.checkbox("直近の業績や決算を確認した")
 checked_risks = st.checkbox("リスク要因を確認した")
 compared_competitors = st.checkbox("競合企業と比較した")
 
-missing_checks = []
+st.divider() #st.divider() は、画面に区切り線を入れる命令
+#以下診断結果エリア
+st.header("診断結果")
 
-if not understands_business:
-    missing_checks.append("企業の主な事業内容")
+#with st.container():インデントされた部分がまとまりになる
+with st.container():
+    st.caption(
+        "入力内容をもとに、情報源の偏りや確認不足の可能性を表示します。"
+    )  #st.caption() は、補足説明を小さめの文字で表示する命令
 
-if not checked_financials:
-    missing_checks.append("直近の業績や決算")
+    missing_checks = []
 
-if not checked_risks:
-    missing_checks.append("リスク要因")
+    if not understands_business:
+        missing_checks.append("企業の主な事業内容")
 
-if not compared_competitors:
-    missing_checks.append("競合企業との違い")
+    if not checked_financials:
+        missing_checks.append("直近の業績や決算")
 
-if missing_checks:
-    st.subheader("追加で確認すべきこと")
+    if not checked_risks:
+        missing_checks.append("リスク要因")
+
+    if not compared_competitors:
+        missing_checks.append("競合企業との違い")
+
+    if missing_checks:
+        st.subheader("追加で確認すべきこと")
 
     for item in missing_checks:
         st.write(f"- {item}")
-else:
-    st.success("基本的な確認項目は一通り確認できています。")
+    else:
+        st.success("基本的な確認項目は一通り確認できています。")
 
-#確認済みの数を表示
-check_results = [
+    #確認済みの数を表示
+    check_results = [
     understands_business,
     checked_financials,
     checked_risks,
     compared_competitors,
-]
+    ]
 
-checked_count = 0
+    checked_count = 0
 
-for check in check_results:
-    if check:
-        checked_count = checked_count + 1
+    for check in check_results:
+        if check:
+            checked_count = checked_count + 1
 
-total_checks = len(check_results)  #len() は、Pythonで 中身の数を数える関数
+    total_checks = len(check_results)  #len() は、Pythonで 中身の数を数える関数
 
-st.write(f"{total_checks}項目中{checked_count}項目を確認済みです。")
+    st.write(f"{total_checks}項目中{checked_count}項目を確認済みです。")
 
 
-if checked_count <= 1:
-    st.warning(
+    if checked_count <= 1:
+        st.warning(
         "確認できている項目が少ないため、投資判断の前に基本情報をもう少し確認する必要があります。"
-    )
-elif checked_count < total_checks:
-    st.info(
+        )
+    elif checked_count < total_checks:
+        st.info(
         "いくつかの基本項目は確認できていますが、未確認の項目も残っています。追加確認項目を見直してみてください。"
-    )
-else:
-    st.success(
+     )
+    else:
+        st.success(
         "基本的な確認項目は一通り確認できています。情報源の偏りもあわせて確認しましょう。"
-    )
+     )
